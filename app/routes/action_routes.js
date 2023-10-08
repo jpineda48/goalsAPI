@@ -27,6 +27,50 @@ router.post('/actions/:goalId', removeBlanks, (req, res, next) => {
 })
 
 ///update and action
+//PATCH
+router.patch('/actions/:goalId/:actionId', requireToken, removeBlanks, (req, res, next) => {
+    ///save both ids to variables to use later
+    const goalId = req.params.goalId 
+    const actionId = req.params.actionId
+    Goal.findById(goalId)
+        .then(handle404)
+        .then(goal => {
+            const theAction = goal.actions.id(actionId)
+            requireOwnership(req, goal)
+
+            theAction.set(req.body.action)
+
+            return goal.save()
+
+        })
+
+        .then(() => res.sendStatus(204))
+        .catch(next)
+
+})
+
+//delete a toy
+router.delete('/actions/:goalId/:actionId', requireToken, removeBlanks, (req, res, next) => {
+    ///save both ids to variables to use later
+    const goalId = req.params.goalId 
+    const actionId = req.params.actionId
+    Goal.findById(goalId)
+        .then(handle404)
+        .then(goal => {
+            const theAction = goal.actions.id(actionId)
+            requireOwnership(req, goal)
+
+            theAction.deleteOne()
+
+            return goal.save()
+
+        })
+
+        .then(() => res.sendStatus(204))
+        .catch(next)
+
+})
+
 
 
 //delete an action
