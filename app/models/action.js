@@ -9,6 +9,6 @@ const actionSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, {timstamps:true})
+}, {timestamps:true})
 
 module.exports = actionSchema
