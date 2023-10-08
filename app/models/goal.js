@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const actionSchema = require('./action')
+
 const goalSchema = new mongoose.Schema(
 	{
 		catagory: {
@@ -25,6 +27,7 @@ const goalSchema = new mongoose.Schema(
 			type: String,
 			enum: ['started', 'In Progress', 'Finished']
 		},
+		actions: [actionSchema],
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
