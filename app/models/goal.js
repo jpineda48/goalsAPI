@@ -14,11 +14,11 @@ const goalSchema = new mongoose.Schema(
 			required: true,
 		},
 		start_date: {
-			type:Date
+			type:String,
 
 		},
 		end_date:{
-			type:Date
+			type:String,
 		},
 		description: {
 			type: String
