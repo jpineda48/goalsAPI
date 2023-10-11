@@ -13,11 +13,7 @@ const goalSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		start_date: {
-			type:String,
-
-		},
-		end_date:{
+		progress_measurement:{
 			type:String,
 		},
 		description: {
@@ -25,7 +21,7 @@ const goalSchema = new mongoose.Schema(
 		},
 		status: {
 			type: String,
-			enum: ['Started', 'In Progress', 'Finished']
+			enum: ['Not Started', 'In Progress', 'Finished']
 		},
 		actions: [actionSchema],
 		owner: {

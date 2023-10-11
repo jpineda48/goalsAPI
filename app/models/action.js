@@ -5,9 +5,16 @@ const actionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    purpose:{
+        type:String,
+    },
+    priority:{
+        type: String,
+		enum: ['High', 'Med', 'Low']
+    },
     frequency:{
         type: String,
-        required: true
+		enum: ['Daily', 'Weekly', 'Monthly', 'Yearly']
     }
 }, {timestamps:true})
 
