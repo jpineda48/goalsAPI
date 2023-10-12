@@ -2,17 +2,20 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const morgan = require('morgan')
 
 // require route files
 
 const goalRoutes = require('./app/routes/goal_routes')
 const actionRoutes = require('./app/routes/action_routes')
+const journalRoutes = require('./app/routes/journalEntry_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
 const replaceToken = require('./lib/replace_token')
 const requestLogger = require('./lib/request_logger')
+
 
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
@@ -43,7 +46,8 @@ app.use(
 		origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}`,
 	})
 )
-
+// gives error messages
+app.use(morgan('dev'))
 // define port for API to run on
 // adding PORT= to your env file will be necessary for deployment
 const port = process.env.PORT || serverDevPort
@@ -69,6 +73,7 @@ app.use(requestLogger)
 // register route files
 
 app.use(goalRoutes)
+app.use(journalRoutes)
 app.use(actionRoutes)
 app.use(userRoutes)
 
