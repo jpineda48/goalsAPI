@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for mygoalsapi on 2023-10-13T10:16:23-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "mygoalsapi"
+primary_region = "mia"
+
+[build]
+
+[env]
+  PORT="8080"
+  MONGODB_URI="mongodb+srv://jacquelinepineda48:gluXT0jOqF3EMewY@cluster0.ugwmhtb.mongodb.net/goalsapp?retryWrites=true&w=majority"
+  CLIENT_ORIGIN="https://mygoalslog.netlify.app"
+
+
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
